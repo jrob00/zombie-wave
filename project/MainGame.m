@@ -11,6 +11,10 @@
 
 @implementation MainGame
 
+#define IS_IPHONE (!IS_IPAD)
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone)
+
+
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
@@ -33,7 +37,6 @@
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
         
-        //[[SimpleAudioEngine sharedEngine] playEffect:@"gunshot.caf"];
         //[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"musicloop.mp3" loop:YES];
         
         self.isTouchEnabled = YES;
@@ -48,6 +51,20 @@
         [self addChild:scoreLabel];
         
         
+        if (IS_IPAD) {
+            
+            CCLOG(@"this is an IPAD");
+            
+            
+            
+        } else if (IS_IPHONE) {
+            
+            CCLOG(@"this is an IPHONE");
+            
+        }
+        
+        
+        
         CCSprite *TempSprite = [CCSprite spriteWithFile:@"dude.png"];
         yLocationOfPlayer = TempSprite.contentSize.height / 2;
         
@@ -55,9 +72,6 @@
         [self addChild:thePlayer z:10];
         thePlayer.position = ccp(screenWidth / 2, yLocationOfPlayer);
         
-        theTarget = [CCSprite spriteWithFile:@"target.png"];
-        [self addChild:theTarget z:1];
-        theTarget.position = ccp(screenWidth / 2, screenHeight - (theTarget.contentSize.height / 2) );
         
         CCSprite *theBackground = [CCSprite spriteWithFile:@"background.png"];
         [self addChild:theBackground z:-10];
@@ -92,61 +106,6 @@
 // pretty much controls everything
 -(void) mainGameLoop:(ccTime) delta {
     
-    // positioning & moving the target
-    
-    theTarget.position = ccp(theTarget.position.x + moveVar, theTarget.position.y);
-    
-    if (theTarget.position.x > screenWidth) {
-        
-        moveVar = moveVar * -1;
-        
-    } else if (theTarget.position.x <= 0) {
-        
-        moveVar = moveVar * -1;
-    }
-    
-    
-    // collision detection for the bullet and target
-    
-    // cycle through every child and find the bullets
-    
-    for (Bullet *someBullet in self.children) {
-        
-        if ( [someBullet isKindOfClass:[Bullet class]] ) {
-            
-            // someBullet is the Bullet
-            // someBullet.bulletSprite is the actual bulletSprite
-            
-            CGPoint bulletPoint = ccp(someBullet.position.x, someBullet.bulletSprite.position.y);
-            
-            if ( [self checkCollisionWithBullseye:bulletPoint] == YES ) {
-                
-                CCLOG(@"collided with bullseye");
-                
-                // add to the score
-                [self addToScore:10];
-                
-                // show the points
-                thePoints = [CCSprite spriteWithFile:@"points.png"];
-                [self addChild:thePoints z:20];
-                thePoints.position = ccp(someBullet.position.x, screenHeight - thePoints.contentSize.height);
-                
-                [self schedule:@selector(getRidOfPointsSign:) interval:0.8];
-                
-                [self removeChild:someBullet cleanup:YES];
-                
-            } else if ( [self checkCollisionWithEntireTarget:bulletPoint] == YES ) {
-                
-                CCLOG(@"collided with target, not bullseye");
-                
-                // make the bullet richocet
-                [someBullet startToMoveBulletDown];
-                
-                // add to the score
-                [self addToScore:1];
-            }
-        }
-    }
     
 }
 
@@ -159,44 +118,6 @@
     
 }
 
--(void) getRidOfPointsSign:(ccTime) delta {
-    
-    [self removeChild:thePoints cleanup:NO];
-    [self unschedule:_cmd];
-}
-
--(BOOL) checkCollisionWithBullseye: (CGPoint) bulletPointToCheck {
-    
-    float maxCollisionDistance = 20;
-    
-    CGPoint checkPoint = ccp(theTarget.position.x, theTarget.position.y);
-    
-    // compare the distance between the two CGPoints
-    float distanceBetween = ccpDistance(bulletPointToCheck, checkPoint);
-    
-    if (distanceBetween < maxCollisionDistance) {
-        return YES;
-    }
-    
-    return NO;
-}
-
--(BOOL) checkCollisionWithEntireTarget: (CGPoint) bulletPointToCheck {
-    
-    float maxCollisionDistance = theTarget.contentSize.width / 2;
-    
-    CGPoint checkPoint = ccp(theTarget.position.x, theTarget.position.y);
-    
-    
-    if (bulletPointToCheck.x > ( checkPoint.x - maxCollisionDistance) &&
-        bulletPointToCheck.x < ( checkPoint.x + maxCollisionDistance) &&
-        bulletPointToCheck.y >= checkPoint.y
-    ) {
-        return YES;
-    }
-    
-    return NO;
-}
 
 
 

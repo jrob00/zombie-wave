@@ -15,24 +15,31 @@
 
 @interface MainGame : CCLayer {
     
+    // custom classes
     Player *thePlayer;
-    CCSprite *theTarget;
-    CCSprite *thePoints;
     
+    // CCSprites
+    
+    
+    // Labels
     CCLabelBMFont *scoreLabel;
     
+    // ints
     int screenWidth;
     int screenHeight;
     int yLocationOfPlayer;
     int score;
-    
     signed char moveVar;
+    
+    // floats
+    
+    // bools
+
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
--(BOOL) checkCollisionWithBullseye: (CGPoint) bulletPointToCheck;
--(BOOL) checkCollisionWithEntireTarget: (CGPoint) bulletPointToCheck;
+
 -(void) addToScore:(int) amountToAdd;
 
 @end

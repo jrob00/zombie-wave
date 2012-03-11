@@ -23,6 +23,10 @@
     
     if ((self = [super init])) {
         
+        CGSize size = [[CCDirector sharedDirector] winSize];
+        screenWidth = size.width;
+        screenHeight = size.height;
+        
         counter = 20;
         
         theBaseImage = baseImage;
@@ -42,7 +46,7 @@
 -(void) moveBulletUp:(ccTime)delta {
     
     // move our bullet up 20 pixels at a time
-    bulletSprite.position = ccp( bulletSprite.position.x, bulletSprite.position.y + 20 );
+    bulletSprite.position = ccp( bulletSprite.position.x, bulletSprite.position.y + (screenHeight / 50) );
     
     CGSize screenSize = [CCDirector sharedDirector].winSize;
     

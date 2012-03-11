@@ -15,6 +15,8 @@
     CCSprite *bulletSprite;
     
     int counter;
+    int screenWidth;
+    int screenHeight;
 }
 
 @property (readonly, nonatomic) CCSprite* bulletSprite;
