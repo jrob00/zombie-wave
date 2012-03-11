@@ -412,6 +412,7 @@
 		96694B16150CA08D00C11DF9 /* hooge2.fnt */ = {isa = PBXFileReference; lastKnownFileType = text; name = hooge2.fnt; path = Resources/hooge2.fnt; sourceTree = "<group>"; };
 		96694B17150CA08D00C11DF9 /* gunshot.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = gunshot.caf; path = Resources/gunshot.caf; sourceTree = "<group>"; };
 		96694B18150CA08D00C11DF9 /* shell_drop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = shell_drop.caf; path = Resources/shell_drop.caf; sourceTree = "<group>"; };
+		96694BAC150CA1A900C11DF9 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../Constants.h; sourceTree = "<group>"; };
 		96839DB41509DACD00A6E5D0 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		96839DB51509DACD00A6E5D0 /* Bullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bullet.m; sourceTree = "<group>"; };
 		96B8C51C1505F21800399940 /* zombie-wave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "zombie-wave.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -714,6 +715,7 @@
 				96B8C6971505F68900399940 /* Player.h */,
 				96B8C6981505F68900399940 /* Player.m */,
 				96B8C68E1505F21B00399940 /* GameConfig.h */,
+				96694BAC150CA1A900C11DF9 /* Constants.h */,
 				96B8C5311505F21800399940 /* Resources */,
 				96B8C5451505F21800399940 /* libs */,
 				96B8C6811505F21B00399940 /* Supporting Files */,

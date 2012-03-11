@@ -7,7 +7,7 @@
 //
 
 #import "Bullet.h"
-
+#import "Constants.h"
 
 @implementation Bullet
 
@@ -46,7 +46,7 @@
 -(void) moveBulletUp:(ccTime)delta {
     
     // move our bullet up 20 pixels at a time
-    bulletSprite.position = ccp( bulletSprite.position.x, bulletSprite.position.y + (screenHeight / 50) );
+    bulletSprite.position = ccp( bulletSprite.position.x, bulletSprite.position.y + (screenHeight / bulletSpeed) );
     
     CGSize screenSize = [CCDirector sharedDirector].winSize;
     
