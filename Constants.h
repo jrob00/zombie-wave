@@ -1,1 +1,0 @@
-#define bulletSpeed 50
