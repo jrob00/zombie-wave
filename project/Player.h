@@ -23,5 +23,6 @@
 -(id) initWithOurOwnProperties:(NSString*) baseImage;
 -(void) setUpDefaultAnimation;
 -(void) setUpFireAnimation;
+-(void) setUpThrowingAnimation;
 
 @end

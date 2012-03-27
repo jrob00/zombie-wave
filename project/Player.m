@@ -47,6 +47,12 @@
     theAction = @"fire";
 }
 
+-(void) setUpThrowingAnimation {
+    currentFrame = 0;
+    framesToAnimate = 8;
+    theAction = @"throwing";
+}
+
 -(void) runPlayerAnimationSequence:(ccTime) delta {
     
     currentFrame++;
